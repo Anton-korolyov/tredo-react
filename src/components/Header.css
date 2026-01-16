@@ -1,0 +1,236 @@
+/* ================= HEADER ================= */
+.header {
+  width: 100%;
+  background: #f5f6f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ================= LOGO ================= */
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ff6a00;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ================= SEARCH BOX ================= */
+.search-box {
+  flex: 1;
+  max-width: 620px;
+
+  display: flex;
+  align-items: center;
+
+  background: #eeeeee;
+  border-radius: 999px;
+  padding: 4px;
+  gap: 6px;
+
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.search-box:focus-within {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.18);
+}
+
+/* INPUT */
+.search-box input {
+  flex: 1;
+  height: 34px;
+  padding: 0 16px;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font-size: 14px;
+  color: #111;
+}
+
+.search-box input::placeholder {
+  color: #777;
+}
+
+/* CITY SELECT */
+.city-select {
+  height: 34px;
+  padding: 0 14px;
+
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+
+  background: transparent;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.city-select:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+/* ADD CARD */
+.btn.add {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #111;
+  font-weight: 500;
+
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn.add:hover {
+  background: #f7f7f7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* AUTH */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #111;
+}
+
+.btn.primary {
+  background: #111;
+  color: #fff;
+}
+
+/* ================= USER MENU ================= */
+.user-menu {
+  position: relative;
+}
+
+.user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* BACKDROP */
+.dropdown-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 120%;
+
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+  min-width: 160px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 10px 14px;
+
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.dropdown-item:hover {
+  background: #f3f3f3;
+}
+
+.dropdown-item.logout {
+  color: #d32f2f;
+}
+
+/* ================= MOBILE GRID LAYOUT ================= */
+/* ================= MOBILE GRID LAYOUT – FIX WIDTH ================= */
+@media (max-width: 600px) {
+  .header-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "logo user"
+      "search search"
+      "add add";
+    row-gap: 12px;
+    align-items: center;
+  }
+
+  /* TOP */
+  .logo {
+    grid-area: logo;
+    justify-self: start;
+  }
+
+  .auth-buttons {
+    grid-area: user;
+    justify-self: end;
+  }
+
+  /* 🔥 SEARCH = SAME WIDTH AS BUTTON */
+  .search-box {
+    grid-area: search;
+    width: 100%;
+    max-width: none;          /* 👈 КЛЮЧЕВОЕ */
+    padding: 4px;             /* можно оставить */
+    box-sizing: border-box;
+  }
+
+  .search-box input,
+  .city-select {
+    height: 44px;
+  }
+
+  /* 🔥 ADD CARD */
+  .btn.add {
+    grid-area: add;
+    width: 100%;
+    height: 46px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+}
+

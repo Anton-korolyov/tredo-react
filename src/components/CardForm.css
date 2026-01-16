@@ -1,0 +1,85 @@
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.card-form h2 {
+  margin-bottom: 8px;
+}
+
+.card-form input,
+.card-form textarea {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.card-form input:focus,
+.card-form textarea:focus {
+  outline: none;
+  border-color: #ff6a00;
+  box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.15);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.form-actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Base iOS button */
+.ios-btn {
+  height: 36px;
+  padding: 0 18px;
+
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+
+  border: none;
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.12s ease;
+}
+
+/* Primary (Save) */
+.ios-btn.primary {
+  background-color: #ff7a00;
+  color: #fff;
+}
+
+.ios-btn.primary:hover {
+  background-color: #ff8f26;
+}
+
+.ios-btn.primary:active {
+  transform: scale(0.97);
+}
+
+/* Secondary (Cancel) */
+.ios-btn.secondary {
+  background-color: #f2f2f7;
+  color: #1c1c1e;
+}
+
+.ios-btn.secondary:hover {
+  background-color: #e5e5ea;
+}
+
+.ios-btn.secondary:active {
+  transform: scale(0.97);
+}
+.ios-btn {
+  -webkit-tap-highlight-color: transparent;
+}
