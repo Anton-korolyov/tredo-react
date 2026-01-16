@@ -26,6 +26,10 @@ jobs:
       - name: Build React app
         run: npm run build
 
+      # ✅ ВАЖНО: включаем Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
+      # ✅ Docker build
       - name: Build Docker image
         run: docker build -t tredo-frontend .
