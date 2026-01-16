@@ -25,3 +25,7 @@ jobs:
 
       - name: Build React app
         run: npm run build
+
+
+      - name: Build Docker image
+        run: docker build -t tredo-frontend .
