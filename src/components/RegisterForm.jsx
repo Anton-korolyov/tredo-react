@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
-
+import "./RegisterForm.css";
 export default function RegisterForm({ onCancel, onSwitchToLogin }) {
   const { register } = useAuth();
 
