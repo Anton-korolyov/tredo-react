@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./CardForm.css";
 
 export default function CardForm({ initialData = {}, onSave, onCancel }) {
+  const BACKEND_URL = "https://tredo.co.il";
   const [title, setTitle] = useState(initialData.title || "");
   const [price, setPrice] = useState(initialData.price || "");
   const [city, setCity] = useState(initialData.city || "");
@@ -11,7 +12,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
   // 🆕 FILE
   const [imageFile, setImageFile] = useState(null);
  const [preview, setPreview] = useState(
-  initialData.image ? initialData.image : null
+  initialData.image ? BACKEND_URL + initialData.image : null
 );
 
   const handleFileChange = (e) => {
