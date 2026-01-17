@@ -32,9 +32,9 @@
   border: 1px solid #d1d1d6;
 
   background: #f9f9fb;
+
   font-size: 14px;
   color: #1c1c1e;
-
   outline: none;
   transition: 0.2s;
 }
@@ -45,7 +45,6 @@
   box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2);
 }
 
-/* ===== ERROR ===== */
 .form-error {
   margin-bottom: 14px;
   font-size: 13px;
