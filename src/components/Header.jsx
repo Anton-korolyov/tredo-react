@@ -18,7 +18,7 @@ export default function Header({
     <header className="header">
       <div className="header-inner">
         {/* LOGO */}
-        <div className="logo">YadCard</div>
+        <div className="logo">Tredo</div>
 
         {/* SEARCH */}
         <div className="search-box">
