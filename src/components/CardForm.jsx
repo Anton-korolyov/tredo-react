@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./CardForm.css";
-import { API_BASE_URL  } from "../api/axios";
+
 export default function CardForm({ initialData = {}, onSave, onCancel }) {
   const [title, setTitle] = useState(initialData.title || "");
   const [price, setPrice] = useState(initialData.price || "");
@@ -11,7 +11,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
   // 🆕 FILE
   const [imageFile, setImageFile] = useState(null);
  const [preview, setPreview] = useState(
-  initialData.image ? `${API_BASE_URL}${initialData.image}` : null
+  initialData.image ? initialData.image : null
 );
 
   const handleFileChange = (e) => {
