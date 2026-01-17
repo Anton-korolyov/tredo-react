@@ -1,5 +1,5 @@
 import "./Modal.css";
-import { API_BASE_URL  } from "../api/axios";
+
 export default function Modal({
   item,
   isOwner,     // 👈 НОВОЕ
@@ -7,7 +7,7 @@ export default function Modal({
   onEdit,
   onDelete,
 }) {
-
+const API_BASE_URL = import.meta.env.VITE_API_URL;
     const imageUrl = item.image
     ? `${API_BASE_URL }${item.image}`
     : "/placeholder.png";

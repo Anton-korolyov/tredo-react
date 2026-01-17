@@ -1,7 +1,7 @@
 import "./Card.css";
-import { API_BASE_URL  } from "../api/axios";
-function Card({ item, onClick }) {
 
+function Card({ item, onClick }) {
+const API_BASE_URL = import.meta.env.VITE_API_URL;
   const imageUrl = item.image
     ? `${API_BASE_URL }${item.image}`
     : "/placeholder.png";
