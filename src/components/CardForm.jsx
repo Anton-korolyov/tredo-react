@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./CardForm.css";
 
 export default function CardForm({ initialData = {}, onSave, onCancel }) {
-  const BACKEND_URL = "https://tredo.co.il";
+  const BACKEND_URL = "https://tredo.co.il/api";
   const [title, setTitle] = useState(initialData.title || "");
   const [price, setPrice] = useState(initialData.price || "");
   const [city, setCity] = useState(initialData.city || "");
