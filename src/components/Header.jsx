@@ -1,68 +1,108 @@
 import "./Header.css";
 import { useAuth } from "../auth/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import api from "../api/axios";
+import { useTranslation } from "react-i18next";
+import CitySelect from "./CitySelect";
 
 export default function Header({
   onAdd,
   onLogin,
   onRegister,
+
   search,
-  city,
+  categoryId,
+  cityId,
+
   onSearchChange,
+  onCategoryChange,
   onCityChange,
 }) {
+  const { t, i18n } = useTranslation();
   const { user, logout } = useAuth();
-  const [open, setOpen] = useState(false);
+
+  const [openUser, setOpenUser] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+
+  const [categories, setCategories] = useState([]);
+
+  // ================= LOAD CATEGORIES =================
+  useEffect(() => {
+    api
+      .get("/api/categories")
+      .then((res) => setCategories(res.data))
+      .catch((err) => console.error("Categories error", err));
+  }, []);
 
   return (
     <header className="header">
       <div className="header-inner">
+
         {/* LOGO */}
         <div className="logo">Tredo</div>
 
-        {/* SEARCH */}
-        <div className="search-box">
+        
+        {/* ===== MOBILE FILTER BUTTON ===== */}
+        <button
+          className="mobile-filters-btn"
+          onClick={() => setShowFilters((v) => !v)}
+        >
+          ⚙️ {t("filters")}
+        </button>
+
+       
+
+        {/* ===== FILTERS ===== */}
+        <div className={`search-box ${showFilters ? "open" : ""}`}>
+          {/* ===== SEARCH INPUT ===== */}
+ <div className="search-main">
           <input
             type="text"
-            placeholder="What are you selling?"
+            placeholder={t("search")}
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
           />
+        </div>
+          {/* CITY */}
+          <div className="search-item">
+            <CitySelect
+              value={cityId}
+              onChange={(id) => onCityChange(id)}
+            />
+          </div>
 
-          <select
-            className="city-select"
-            value={city}
-            onChange={(e) => onCityChange(e.target.value)}
-          >
-            <option value="">All cities</option>
-            <option value="Haifa">Haifa</option>
-            <option value="Tel Aviv">Tel Aviv</option>
-            <option value="Jerusalem">Jerusalem</option>
-            <option value="Krayot">Krayot</option>
-          </select>
+          {/* CATEGORY */}
+          <div className="search-item">
+            <select
+              className="category-select"
+              value={categoryId || ""}
+              onChange={(e) => onCategoryChange(e.target.value)}
+            >
+              <option value="">{t("allCategories")}</option>
+              {categories.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
         </div>
 
-        {/* ADD CARD */}
-        <button
-          className="btn add"
-          onClick={() => {
-            setOpen(false);
-            onAdd();
-          }}
-        >
-          ➕ Add card
+        {/* ===== ADD CARD ===== */}
+        <button className="btn add" onClick={onAdd}>
+          ➕ {t("createCard")}
         </button>
 
-        {/* AUTH AREA */}
+        {/* ===== AUTH ===== */}
         <div className="auth-buttons">
           {!user && (
             <>
               <button className="btn secondary" onClick={onLogin}>
-                Login
+                {t("login")}
               </button>
-
               <button className="btn primary" onClick={onRegister}>
-                Register
+                {t("register")}
               </button>
             </>
           )}
@@ -71,16 +111,16 @@ export default function Header({
             <div className="user-menu">
               <button
                 className="user-btn"
-                onClick={() => setOpen((v) => !v)}
+                onClick={() => setOpenUser((v) => !v)}
               >
                 👤 {user.email}
               </button>
 
-              {open && (
+              {openUser && (
                 <>
                   <div
                     className="dropdown-backdrop"
-                    onClick={() => setOpen(false)}
+                    onClick={() => setOpenUser(false)}
                   />
 
                   <div className="dropdown">
@@ -88,7 +128,7 @@ export default function Header({
                       className="dropdown-item logout"
                       onClick={() => {
                         logout();
-                        setOpen(false);
+                        setOpenUser(false);
                       }}
                     >
                       🚪 Logout
@@ -99,6 +139,7 @@ export default function Header({
             </div>
           )}
         </div>
+
       </div>
     </header>
   );

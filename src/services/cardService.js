@@ -4,20 +4,30 @@ import api from "../api/axios";
 export const getCards = async ({
   page = 1,
   pageSize = 12,
-  city = "",
   search = "",
+  categoryId = "",
+  cityId = "",
 } = {}) => {
   const params = {
     page,
     pageSize,
   };
 
-  if (city) params.city = city;
   if (search) params.search = search;
+  if (categoryId) params.categoryId = categoryId;
+  if (cityId) params.cityId = cityId;
 
   const res = await api.get("/api/cards", { params });
 
-  // backend возвращает { total, page, pageSize, items }
+  return res.data;
+};
+
+// ================= CITY AUTOCOMPLETE =================
+export const searchCities = async (search, lang = "en") => {
+  const res = await api.get("/api/cities/search", {
+    params: { search, lang },
+  });
+
   return res.data;
 };
 
@@ -27,18 +37,17 @@ export const createCard = async (data) => {
 
   formData.append("title", data.title);
   formData.append("price", data.price);
-  formData.append("city", data.city);
   formData.append("phone", data.phone);
   formData.append("description", data.description);
+
+  formData.append("categoryId", data.CategoryId);
+  formData.append("cityId", data.CityId);
 
   if (data.image) {
     formData.append("image", data.image);
   }
 
-  const res = await api.post("/api/cards", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-
+  const res = await api.post("/api/cards", formData);
   return res.data;
 };
 
@@ -48,18 +57,17 @@ export const updateCard = async (id, data) => {
 
   formData.append("title", data.title);
   formData.append("price", data.price);
-  formData.append("city", data.city);
   formData.append("phone", data.phone);
   formData.append("description", data.description);
+
+  formData.append("categoryId", data.CategoryId);
+  formData.append("cityId", data.CityId);
 
   if (data.image) {
     formData.append("image", data.image);
   }
 
-  const res = await api.put(`/api/cards/${id}`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-
+  const res = await api.put(`/api/cards/${id}`, formData);
   return res.data;
 };
 

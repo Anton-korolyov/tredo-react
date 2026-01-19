@@ -1,0 +1,30 @@
+{
+  "search": "What are you selling?",
+  "allCities": "All cities",
+  "allCategories": "All categories",
+  "addCard": "Add card",
+
+  "title": "Title",
+  "price": "Price",
+  "city": "City",
+  "phone": "Phone",
+  "description": "Description",
+  "category": "Category",
+
+  "save": "Save",
+  "cancel": "Cancel",
+  "edit": "Edit",
+  "delete": "Delete",
+
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+
+  "createCard": "Add card",
+  "editCard": "Edit card",
+
+  "selectCategory": "Select category",
+  "selectCity": "Select city",
+
+  "confirmDelete": "Delete this card?"
+}

@@ -184,53 +184,220 @@
 .dropdown-item.logout {
   color: #d32f2f;
 }
+.card-category {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ff6a00;
 
+  background: rgba(255, 106, 0, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  margin-bottom: 6px;
+}
+/* CITY SELECT */
+.category-select{
+  height: 34px;
+  padding: 0 14px;
+
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+
+  background: transparent;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.category-select:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.mobile-filters-btn {
+  display: none;
+  width: 100%;
+  height: 44px;
+
+  border-radius: 14px;
+  border: none;
+
+  background: #f2f2f7;
+  font-size: 15px;
+  font-weight: 500;
+
+  margin-top: 10px;
+}
 /* ================= MOBILE GRID LAYOUT ================= */
 /* ================= MOBILE GRID LAYOUT – FIX WIDTH ================= */
-@media (max-width: 600px) {
+
+/* ================= MOBILE HEADER FIX ================= */
+/* ================= MOBILE HEADER ================= */
+@media (max-width: 768px) {
+ .mobile-filters-btn {
+    display: block;
+  }
+
+  /* фильтры скрыты */
+  .search-box {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  /* открыты */
+  .search-box.open {
+    display: flex;
+  }
+  .header {
+    padding: 12px;
+  }
+
+  .header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+  }
+
+  /* logo + user */
+  .logo {
+    font-size: 20px;
+  }
+
+  /* SEARCH STACK */
+  .search-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+      background: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .search-item {
+    width: 100%;
+  }
+
+   .search-item {
+    background: #f2f2f2;
+    border-radius: 14px;
+    padding: 4px;
+     width: 100%;
+  }
+
+  .search-item input,
+  .category-select,
+  .city-input {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+  }
+  /* Add card button */
+  .btn.add {
+    width: 100%;
+    height: 48px;
+    border-radius: 16px;
+    font-size: 16px;
+  }
+
+  /* auth block */
+  .auth-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+    .city-select {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0;
+  }
+}
+
+
+
+/* ===== MOBILE FILTERS ===== */
+@media (max-width: 768px) {
+
+  .search-box {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .search-box.open {
+    display: flex;
+  }
+
+  .search-main input {
+    width: 100%;
+  }
+
+  .mobile-filters-btn {
+    width: 100%;
+    margin-top: 10px;
+    height: 44px;
+    border-radius: 14px;
+    border: none;
+    background: #f2f2f7;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+@media (min-width: 769px) {
+  .search-box {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-filters-btn {
+    display: none;
+  }
+}
+/* ================= MOBILE HEADER FIX ================= */
+/* ================= MOBILE TOP BAR ================= */
+@media (max-width: 768px) {
+
+  /* первая строка: logo + user */
   .header-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;
     grid-template-areas:
       "logo user"
+      "filters filters"
       "search search"
       "add add";
     row-gap: 12px;
-    align-items: center;
   }
 
-  /* TOP */
   .logo {
     grid-area: logo;
-    justify-self: start;
+    align-self: center;
   }
 
   .auth-buttons {
     grid-area: user;
     justify-self: end;
+    align-self: center;
   }
 
-  /* 🔥 SEARCH = SAME WIDTH AS BUTTON */
+  .mobile-filters-btn {
+    grid-area: filters;
+  }
+
   .search-box {
     grid-area: search;
-    width: 100%;
-    max-width: none;          /* 👈 КЛЮЧЕВОЕ */
-    padding: 4px;             /* можно оставить */
-    box-sizing: border-box;
   }
 
-  .search-box input,
-  .city-select {
-    height: 44px;
-  }
-
-  /* 🔥 ADD CARD */
   .btn.add {
     grid-area: add;
-    width: 100%;
-    height: 46px;
-    box-sizing: border-box;
-    font-size: 16px;
   }
 }
 

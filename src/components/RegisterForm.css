@@ -1,123 +1,59 @@
-/* ===== AUTH FORM ===== */
 .auth-form {
-  width: 100%;
-  max-width: 520px;
-  padding: 30px;
-
-  background: #ffffff;
-  border-radius: 26px;
-
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
-
-  animation: authIn 420ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ===== TITLE ===== */
-.auth-form h2 {
-  margin-bottom: 22px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #1c1c1e;
-}
-
-
-/* ===== INPUTS ===== */
-.auth-form input {
-  width: 100%;
-  height: 46px;
-  padding: 0 14px;
-  margin-bottom: 14px;
-
-  border-radius: 12px;
-  border: 1px solid #d1d1d6;
-
-  background: #f9f9fb;
-
-  font-size: 14px;
-  color: #1c1c1e;
-  outline: none;
-  transition: 0.2s;
-}
-
-.auth-form input:focus {
+  width: 360px;
   background: #fff;
-  border-color: #ff7a00;
-  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.form-error {
-  margin-bottom: 14px;
-  font-size: 13px;
-  color: #ff3b30;
+.auth-form input {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
-/* ===== BUTTONS AREA ===== */
 .form-actions {
   display: flex;
-  gap: 12px;
-  margin-top: 12px;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-/* ===== BUTTON BASE ===== */
 .ios-btn {
-  height: 44px;
-  padding: 0 22px;
-
-  border-radius: 14px;
-  font-size: 15px;
-  font-weight: 500;
-
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
-  transition: 0.15s ease;
 }
 
-/* ===== PRIMARY ===== */
 .ios-btn.primary {
-  flex: 1;
   background: #ff7a00;
   color: white;
-  border: none;
 }
 
-.ios-btn.primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.4);
-}
-
-/* ===== SECONDARY ===== */
 .ios-btn.secondary {
-  background: #f2f2f7;
-  border: none;
-  color: #1c1c1e;
+  background: #eee;
 }
-
-.ios-btn.secondary:hover {
-  background: #e5e5ea;
-}
-
-/* ===== FOOTER ===== */
 .form-hint {
-  margin-top: 18px;
+  margin-top: 10px;
   font-size: 14px;
-  color: #6e6e73;
+  color: #777;
+  text-align: center;
 }
 
 .form-hint button {
   background: none;
   border: none;
   color: #ff7a00;
-  cursor: pointer;
   font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
 }
 
-/* ===== ANIMATION ===== */
-@keyframes authIn {
-  from {
-    transform: translateY(20px) scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
+.form-hint button:hover {
+  text-decoration: underline;
 }

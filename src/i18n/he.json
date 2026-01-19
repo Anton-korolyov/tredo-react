@@ -1,0 +1,30 @@
+{
+  "search": "מה אתה מוכר?",
+  "allCities": "כל הערים",
+  "allCategories": "כל הקטגוריות",
+  "addCard": "הוסף מודעה",
+
+  "title": "כותרת",
+  "price": "מחיר",
+  "city": "עיר",
+  "phone": "טלפון",
+  "description": "תיאור",
+  "category": "קטגוריה",
+
+  "save": "שמור",
+  "cancel": "ביטול",
+  "edit": "ערוך",
+  "delete": "מחק",
+
+  "login": "התחברות",
+  "register": "הרשמה",
+  "logout": "התנתקות",
+
+  "createCard": "פרסום מודעה",
+  "editCard": "עריכת מודעה",
+
+  "selectCategory": "בחר קטגוריה",
+  "selectCity": "בחר עיר",
+
+  "confirmDelete": "למחוק את המודעה?"
+}

@@ -26,48 +26,55 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 
         <img src={imageUrl} alt={item.title} />
 
-        <div className="modal-content">
-          <h2>{item.title}</h2>
+     <div className="modal-content">
 
-          <div className="modal-price">
-            ₪ {item.price.toLocaleString()}
-          </div>
+  {/* CATEGORY + CITY */}
+  <div className="modal-meta">
+    <span className="modal-category">
+      {item.categoryName}
+    </span>
 
-          <div className="modal-city">{item.city}</div>
+    <span className="modal-city">
+      {item.cityName}
+    </span>
+  </div>
 
-          <p>{item.description}</p>
+  {/* TITLE */}
+  <h2 className="modal-title">
+    {item.title}
+  </h2>
 
-          <div className="modal-phone">
-            <a href={`tel:${item.phone}`}>
-              📞 {item.phone}
-            </a>
-          </div>
+  {/* DESCRIPTION */}
+  <p className="modal-description">
+    {item.description}
+  </p>
 
-          {/* ACTIONS */}
-          {isOwner && (
-            <div className="modal-actions">
-              <button
-                className="action-btn edit"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onEdit && onEdit();
-                }}
-              >
-                ✏️ Edit
-              </button>
+  {/* PHONE + PRICE */}
+  <div className="modal-bottom">
+    <div className="modal-phone">
+      📞 {item.phone}
+    </div>
 
-              <button
-                className="action-btn delete"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onDelete && onDelete();
-                }}
-              >
-                🗑 Delete
-              </button>
-            </div>
-          )}
-        </div>
+    <div className="modal-price">
+      ₪ {item.price.toLocaleString()}
+    </div>
+  </div>
+
+  {/* ACTIONS — НЕ ТРОГАЕМ */}
+ 
+
+</div>
+ {isOwner && (
+    <div className="modal-footer">
+      <button className="action-btn edit" onClick={onEdit}>
+        ✏️ Edit
+      </button>
+
+      <button className="action-btn delete" onClick={onDelete}>
+        🗑 Delete
+      </button>
+    </div>
+  )}
       </div>
     </div>
   );

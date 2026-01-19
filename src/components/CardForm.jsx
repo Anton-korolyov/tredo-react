@@ -1,19 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import api from "../api/axios";
 import "./CardForm.css";
 
 export default function CardForm({ initialData = {}, onSave, onCancel }) {
-  const BACKEND_URL = "https://tredo.co.il/api";
+  const BACKEND_ORIGIN = import.meta.env.VITE_API_URL;
+
   const [title, setTitle] = useState(initialData.title || "");
   const [price, setPrice] = useState(initialData.price || "");
-  const [city, setCity] = useState(initialData.city || "");
   const [phone, setPhone] = useState(initialData.phone || "");
   const [description, setDescription] = useState(initialData.description || "");
 
-  // 🆕 FILE
+  // ✅ IDs
+  const [categoryId, setCategoryId] = useState(initialData.categoryId || "");
+  const [cityId, setCityId] = useState(initialData.cityId || "");
+
+  // lists
+  const [categories, setCategories] = useState([]);
+  const [cities, setCities] = useState([]);
+
   const [imageFile, setImageFile] = useState(null);
- const [preview, setPreview] = useState(
-  initialData.image ? BACKEND_URL + initialData.image : null
-);
+  const [preview, setPreview] = useState(
+    initialData.image ? BACKEND_ORIGIN + initialData.image : null
+  );
+
+  // ===== LOAD CATEGORIES =====
+  useEffect(() => {
+    api.get("/api/categories")
+      .then(res => setCategories(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  // ===== LOAD CITIES =====
+  useEffect(() => {
+    api.get("/api/cities/search") // первые 10
+      .then(res => setCities(res.data))
+      .catch(err => console.error(err));
+  }, []);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -26,14 +48,25 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!categoryId) {
+      alert("Select category");
+      return;
+    }
+
+    if (!cityId) {
+      alert("Select city");
+      return;
+    }
+
     onSave({
       ...initialData,
       title,
       price: Number(price),
-      city,
       phone,
       description,
-      image: imageFile, // 👈 ВАЖНО: File, не string
+      CategoryId: Number(categoryId),
+      CityId: Number(cityId),
+      image: imageFile
     });
   };
 
@@ -56,12 +89,33 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
         required
       />
 
-      <input
-        placeholder="City"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
+      {/* CATEGORY */}
+      <select
+        value={categoryId}
+        onChange={(e) => setCategoryId(e.target.value)}
         required
-      />
+      >
+        <option value="">Select category</option>
+        {categories.map(c => (
+          <option key={c.id} value={c.id}>
+            {c.name}
+          </option>
+        ))}
+      </select>
+
+      {/* CITY */}
+      <select
+        value={cityId}
+        onChange={(e) => setCityId(e.target.value)}
+        required
+      >
+        <option value="">Select city</option>
+        {cities.map(c => (
+          <option key={c.id} value={c.id}>
+            {c.name}
+          </option>
+        ))}
+      </select>
 
       <input
         placeholder="Phone"
@@ -70,12 +124,22 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
         required
       />
 
-      {/* 📸 IMAGE UPLOAD */}
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-      />
+      {/* FILE */}
+      <div className="file-upload">
+        <label className="file-btn">
+          📷 Choose image
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            onChange={handleFileChange}
+          />
+        </label>
+
+        {imageFile && (
+          <span className="file-name">{imageFile.name}</span>
+        )}
+      </div>
 
       {preview && (
         <img

@@ -22,6 +22,36 @@
   margin: 0 auto;
   padding: 24px;        /* ⬅️ ВОТ ОН */
 }
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #ff7a00;
+  color: #fff;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  z-index: 9999;
+
+  transition: transform 0.2s ease;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+}
+
+.scroll-top:active {
+  transform: scale(0.95);
+}
 
 @keyframes logo-spin {
   from {
