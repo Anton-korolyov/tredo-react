@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { useTranslation } from "react-i18next";
 import CitySelect from "./CitySelect";
-
+import logo from "../assets/logo.png";
 export default function Header({
   onAdd,
   onLogin,
@@ -39,7 +39,9 @@ export default function Header({
       <div className="header-inner">
 
         {/* LOGO */}
-        <div className="logo">Tredo</div>
+        <div className="logo">
+           <img src={logo} alt="Tredo" />
+        </div>
 
         
         {/* ===== MOBILE FILTER BUTTON ===== */}
