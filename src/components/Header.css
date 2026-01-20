@@ -5,22 +5,25 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 .logo {
-  width: 140px;        /* ← фиксированная ширина */
+  width: 140px;
   min-width: 140px;
-  height: 70px;
+  height: 100px;
 
   display: flex;
   align-items: center;
+
+  flex: 0 0 140px;   /* 🔥 КЛЮЧ */
+  overflow: visible;
 }
 
 .logo img {
-  height: 42px;        /* ← увеличиваешь логотип */
+  height: 90px;
   width: auto;
 
-  transform: scale(1.4);   /* 🔥 магия */
+  transform: scale(1.6);
   transform-origin: left center;
 
-  pointer-events: none;
+  display: block;
 }
 .header-inner {
   max-width: 1280px;
