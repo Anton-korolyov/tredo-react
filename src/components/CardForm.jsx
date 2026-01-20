@@ -155,7 +155,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
         />
       )}
 
-      <textarea
+      <textarea className="desc"
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}

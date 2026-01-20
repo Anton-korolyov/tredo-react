@@ -35,7 +35,9 @@
   pointer-events: none;
   color: #888;
 }
-
+.desc{
+   min-height: 100px;
+}
 /* DROPDOWN */
 .city-dropdown {
   position: absolute;
