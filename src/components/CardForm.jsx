@@ -25,7 +25,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
 
   // ===== LOAD CATEGORIES =====
   useEffect(() => {
-    api.get("/api/categories")
+    api.get("/api/categories?lang=${i18n.language}")
       .then(res => setCategories(res.data))
       .catch(err => console.error(err));
   }, []);
