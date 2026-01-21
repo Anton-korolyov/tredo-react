@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import "ScrollTopButton.css";
+import "./ScrollTopButton.css";
 export default function ScrollTopButton({ show }) {
   if (!show) return null;
 
