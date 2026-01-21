@@ -55,16 +55,16 @@ export const createCard = async (data) => {
 export const updateCard = async (id, data) => {
   const formData = new FormData();
 
-  formData.append("title", data.title);
-  formData.append("price", data.price);
-  formData.append("phone", data.phone);
-  formData.append("description", data.description);
+  formData.append("Title", data.title);
+  formData.append("Price", data.price);
+  formData.append("Phone", data.phone ?? "");
+  formData.append("Description", data.description ?? "");
 
-  formData.append("categoryId", data.CategoryId);
-  formData.append("cityId", data.CityId);
+  formData.append("CategoryId", data.categoryId);
+  formData.append("CityId", data.cityId);
 
   if (data.image) {
-    formData.append("image", data.image);
+    formData.append("Image", data.image);
   }
 
   const res = await api.put(`/api/cards/${id}`, formData);
