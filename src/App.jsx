@@ -46,19 +46,8 @@ function App() {
 
   // ================= RTL / LTR =================
   useEffect(() => {
-    document.documentElement.dir =
-      i18n.language === "he" ? "rtl" : "ltr";
+    document.documentElement.dir = i18n.language === "he" ? "rtl" : "ltr";
   }, [i18n.language]);
-
-  // 🔝 SHOW BUTTON
-  useEffect(() => {
-    const onScroll = () => {
-      setShowTop(window.scrollY > 400);
-    };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // ================= LOAD =================
   const loadCards = async (reset = false) => {
@@ -70,12 +59,9 @@ function App() {
         cityId,
       });
 
-      setItems(prev =>
-        reset ? res.items : [...prev, ...res.items]
-      );
-
+      setItems((prev) => (reset ? res.items : [...prev, ...res.items]));
       setHasMore(res.items.length > 0);
-      setPage(prev => (reset ? 2 : prev + 1));
+      setPage((prev) => (reset ? 2 : prev + 1));
     } catch (err) {
       console.error("GET cards error:", err);
       setError("Failed to load cards");
@@ -93,26 +79,35 @@ function App() {
   // ================= FILTER CHANGE =================
   useEffect(() => {
     setLoading(true);
+    setPage(1);
+    setHasMore(true);
     loadCards(true);
     // eslint-disable-next-line
   }, [search, categoryId, cityId]);
 
-  // ================= INFINITE SCROLL =================
+  // ✅ ONE SCROLL LISTENER: button + infinite scroll
   useEffect(() => {
     const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.body.offsetHeight;
+
+      // 🔝 show scroll-to-top
+      setShowTop(scrollTop > 300);
+
+      // ♾ infinite scroll
       if (
-        window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 300 &&
+        windowHeight + scrollTop >= fullHeight - 300 &&
         hasMore &&
         !loading
       ) {
-        loadCards();
+        loadCards(false);
       }
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [hasMore, loading, page]);
+  }, [hasMore, loading, page]); // page оставил как у тебя
 
   // ================= CRUD =================
   const handleAddClick = () => {
@@ -127,15 +122,13 @@ function App() {
 
   const handleAddSave = async (data) => {
     const newCard = await createCard(data);
-    setItems(prev => [newCard, ...prev]);
+    setItems((prev) => [newCard, ...prev]);
     setMode(null);
   };
 
   const handleUpdate = async (data) => {
     const updated = await updateCard(currentItem.id, data);
-    setItems(prev =>
-      prev.map(i => (i.id === updated.id ? updated : i))
-    );
+    setItems((prev) => prev.map((i) => (i.id === updated.id ? updated : i)));
     setMode(null);
     setCurrentItem(null);
   };
@@ -143,9 +136,7 @@ function App() {
   const handleDelete = async () => {
     if (!window.confirm("Delete this card?")) return;
     await deleteCard(currentItem.id);
-    setItems(prev =>
-      prev.filter(i => i.id !== currentItem.id)
-    );
+    setItems((prev) => prev.filter((i) => i.id !== currentItem.id));
     setMode(null);
     setCurrentItem(null);
   };
@@ -165,11 +156,7 @@ function App() {
   };
 
   if (error) {
-    return (
-      <p style={{ padding: 20, color: "red" }}>
-        {error}
-      </p>
-    );
+    return <p style={{ padding: 20, color: "red" }}>{error}</p>;
   }
 
   return (
@@ -197,9 +184,7 @@ function App() {
           />
 
           {loading && (
-            <p style={{ textAlign: "center", padding: 20 }}>
-              Loading...
-            </p>
+            <p style={{ textAlign: "center", padding: 20 }}>Loading...</p>
           )}
         </div>
       </main>
@@ -208,9 +193,7 @@ function App() {
       {showTop && (
         <button
           className="scroll-top"
-          onClick={() =>
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           ⬆
         </button>
@@ -244,10 +227,7 @@ function App() {
       {/* LOGIN */}
       {authMode === "login" && (
         <Popup onClose={handleAuthCancel}>
-          <LoginForm
-            onSuccess={handleAuthSuccess}
-            onCancel={handleAuthCancel}
-          />
+          <LoginForm onSuccess={handleAuthSuccess} onCancel={handleAuthCancel} />
         </Popup>
       )}
 
