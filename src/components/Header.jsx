@@ -35,29 +35,20 @@ export default function Header({
   }, []);
 
   return (
-    <header className="header">
-      <div className="header-inner">
+   <header className="header">
+  <div className="header-inner">
 
-        {/* LOGO */}
-        <div className="logo">
-           <img src={logo} alt="Tredo" />
-        </div>
+    {/* RIGHT */}
+    <div className="header-right">
+      <div className="logo">
+        <img src={logo} alt="Tredo" />
+      </div>
+    </div>
 
-        
-        {/* ===== MOBILE FILTER BUTTON ===== */}
-        <button
-          className="mobile-filters-btn"
-          onClick={() => setShowFilters((v) => !v)}
-        >
-          ⚙️ {t("filters")}
-        </button>
-
-       
-
-        {/* ===== FILTERS ===== */}
-        <div className={`search-box ${showFilters ? "open" : ""}`}>
-          {/* ===== SEARCH INPUT ===== */}
- <div className="search-main">
+    {/* CENTER */}
+    <div className="header-center">
+      <div className={`search-box ${showFilters ? "open" : ""}`}>
+        <div className="search-main">
           <input
             type="text"
             placeholder={t("search")}
@@ -65,84 +56,59 @@ export default function Header({
             onChange={(e) => onSearchChange(e.target.value)}
           />
         </div>
-          {/* CITY */}
-          <div className="search-item">
-            <CitySelect
-              value={cityId}
-              onChange={(id) => onCityChange(id)}
-            />
-          </div>
 
-          {/* CATEGORY */}
-          <div className="search-item">
-            <select
-              className="category-select"
-              value={categoryId || ""}
-              onChange={(e) => onCategoryChange(e.target.value)}
-            >
-              <option value="">{t("allCategories")}</option>
-              {categories.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
+        <div className="search-item">
+          <CitySelect value={cityId} onChange={onCityChange} />
         </div>
 
-        {/* ===== ADD CARD ===== */}
-        <button className="btn add" onClick={onAdd}>
-          ➕ {t("createCard")}
-        </button>
-
-        {/* ===== AUTH ===== */}
-        <div className="auth-buttons">
-          {!user && (
-            <>
-              <button className="btn secondary" onClick={onLogin}>
-                {t("login")}
-              </button>
-              <button className="btn primary" onClick={onRegister}>
-                {t("register")}
-              </button>
-            </>
-          )}
-
-          {user && (
-            <div className="user-menu">
-              <button
-                className="user-btn"
-                onClick={() => setOpenUser((v) => !v)}
-              >
-                👤 {user.email}
-              </button>
-
-              {openUser && (
-                <>
-                  <div
-                    className="dropdown-backdrop"
-                    onClick={() => setOpenUser(false)}
-                  />
-
-                  <div className="dropdown">
-                    <button
-                      className="dropdown-item logout"
-                      onClick={() => {
-                        logout();
-                        setOpenUser(false);
-                      }}
-                    >
-                      🚪 Logout
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
+        <div className="search-item">
+          <select
+            className="category-select"
+            value={categoryId || ""}
+            onChange={(e) => onCategoryChange(e.target.value)}
+          >
+            <option value="">{t("allCategories")}</option>
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
         </div>
-
       </div>
-    </header>
+    </div>
+
+    {/* LEFT */}
+    <div className="header-left">
+      <button className="btn add" onClick={onAdd}>
+        ➕ {t("createCard")}
+      </button>
+
+      <div className="auth-buttons">
+        {!user ? (
+          <>
+            <button className="btn secondary" onClick={onLogin}>
+              {t("login")}
+            </button>
+            <button className="btn primary" onClick={onRegister}>
+              {t("register")}
+            </button>
+          </>
+        ) : (
+          <div className="user-menu">
+            <button
+              className="user-btn"
+              onClick={() => setOpenUser((v) => !v)}
+            >
+              👤 {user.email}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+
+  </div>
+</header>
+
   );
 }
