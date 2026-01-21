@@ -9,7 +9,7 @@ import Popup from "./components/Popup";
 import Modal from "./components/Modal";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-
+import ScrollTopButton from "./components/ui/ScrollTopButton";
 import {
   getCards,
   createCard,
@@ -190,14 +190,7 @@ function App() {
       </main>
 
       {/* 🔝 SCROLL TO TOP BUTTON */}
-      {showTop && (
-        <button
-          className="scroll-top"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          ⬆
-        </button>
-      )}
+       <ScrollTopButton show={showTop} />
 
       {/* VIEW */}
       {mode === "view" && currentItem && (
