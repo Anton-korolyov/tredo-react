@@ -1,21 +1,17 @@
 .scroll-top {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
+  position: fixed !important;
+  right: 50px !important;
+  bottom: 50px !important;
 
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
+  width: 80px !important;
+  height: 80px !important;
 
-  border: none;
-  background: rgb(19, 25, 29);
+  background: red !important;
+  color: white !important;
 
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-
-  z-index: 9999;
+  border: 5px solid black !important;
+  z-index: 999999 !important;
 }
-
 .scroll-top:hover {
   transform: translateY(-3px);
 }
