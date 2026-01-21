@@ -1,30 +1,11 @@
 /* ================= HEADER ================= */
+
 .header {
   width: 100%;
   background: #f5f6f7;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
-.logo {
-  width: 60px;
 
-  height: 30;
-
-  display: flex;
-  align-items: center;
-
-  flex: 0 0 140px;   /* 🔥 КЛЮЧ */
-  overflow: visible;
-}
-
-.logo img {
-  height: 30px;
-  width: auto;
-
-  transform: scale(1.6);
-  transform-origin: left center;
-
-  display: block;
-}
 .header-inner {
   max-width: 1280px;
   margin: 0 auto;
@@ -32,41 +13,66 @@
 
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+
+  direction: rtl;
 }
 
 /* ================= LOGO ================= */
+
 .logo {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ff6a00;
-  white-space: nowrap;
-  flex-shrink: 0;
+  width: 140px;
+  min-width: 140px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  overflow: visible;
 }
 
-/* ================= SEARCH BOX ================= */
-.search-box {
+.logo img {
+  height: 38px;
+  width: auto;
+
+  transform: scale(1.4);
+  transform-origin: right center;
+
+  display: block;
+}
+
+/* ================= CENTER SEARCH ================= */
+
+.header-center {
   flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  width: 100%;
   max-width: 620px;
 
   display: flex;
   align-items: center;
+  gap: 6px;
 
   background: #eeeeee;
   border-radius: 999px;
   padding: 4px;
-  gap: 6px;
 
   transition: background 0.2s, box-shadow 0.2s;
 }
 
 .search-box:focus-within {
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.18);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
 }
 
 /* INPUT */
-.search-box input {
+
+.search-main input {
   flex: 1;
   height: 34px;
   padding: 0 16px;
@@ -79,17 +85,19 @@
   color: #111;
 }
 
-.search-box input::placeholder {
+.search-main input::placeholder {
   color: #777;
 }
 
-/* CITY SELECT */
+/* SELECTS */
+
+.category-select,
 .city-select {
   height: 34px;
   padding: 0 14px;
 
   border: none;
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
 
   background: transparent;
   font-size: 13px;
@@ -98,11 +106,21 @@
   outline: none;
 }
 
+.category-select:hover,
 .city-select:hover {
   background: rgba(0, 0, 0, 0.05);
 }
 
+/* ================= LEFT SIDE ================= */
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* ================= BUTTONS ================= */
+
 .btn {
   height: 34px;
   padding: 0 16px;
@@ -113,22 +131,21 @@
   white-space: nowrap;
 }
 
-/* ADD CARD */
+/* ADD */
+
 .btn.add {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   color: #111;
   font-weight: 500;
-
-  transition: background 0.2s, box-shadow 0.2s;
 }
 
 .btn.add:hover {
   background: #f7f7f7;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* AUTH */
+
 .auth-buttons {
   display: flex;
   align-items: center;
@@ -147,6 +164,7 @@
 }
 
 /* ================= USER MENU ================= */
+
 .user-menu {
   position: relative;
 }
@@ -164,17 +182,17 @@
   font-weight: 500;
 }
 
-/* BACKDROP */
+/* DROPDOWN */
+
 .dropdown-backdrop {
   position: fixed;
   inset: 0;
   z-index: 50;
 }
 
-/* DROPDOWN */
 .dropdown {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 120%;
 
   background: #ffffff;
@@ -192,7 +210,7 @@
 
   border: none;
   background: none;
-  text-align: left;
+  text-align: right;
   cursor: pointer;
   font-size: 13px;
 }
@@ -204,220 +222,69 @@
 .dropdown-item.logout {
   color: #d32f2f;
 }
-.card-category {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
-  color: #ff6a00;
 
-  background: rgba(255, 106, 0, 0.1);
-  padding: 4px 10px;
-  border-radius: 999px;
+/* ================= MOBILE ================= */
 
-  margin-bottom: 6px;
-}
-/* CITY SELECT */
-.category-select{
-  height: 34px;
-  padding: 0 14px;
-
-  border: none;
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
-
-  background: transparent;
-  font-size: 13px;
-  color: #333;
-  cursor: pointer;
-  outline: none;
-}
-
-.category-select:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
 .mobile-filters-btn {
   display: none;
-  width: 100%;
-  height: 44px;
-
-  border-radius: 14px;
-  border: none;
-
-  background: #f2f2f7;
-  font-size: 15px;
-  font-weight: 500;
-
-  margin-top: 10px;
 }
-/* ================= MOBILE GRID LAYOUT ================= */
-/* ================= MOBILE GRID LAYOUT – FIX WIDTH ================= */
 
-/* ================= MOBILE HEADER FIX ================= */
-/* ================= MOBILE HEADER ================= */
+/* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
- .mobile-filters-btn {
-    display: block;
-  }
-
-  /* фильтры скрыты */
-  .search-box {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  /* открыты */
-  .search-box.open {
-    display: flex;
-  }
-  .header {
-    padding: 12px;
-  }
 
   .header-inner {
-    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 14px;
+  }
+
+  .header-center {
     width: 100%;
   }
 
-  /* logo + user */
-  .logo {
-    font-size: 20px;
-  }
-
-  /* SEARCH STACK */
-  .search-box {
-    display: flex;
-    flex-direction: column;
+  .mobile-filters-btn {
+    display: block;
     width: 100%;
-    gap: 10px;
-      background: transparent !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-  }
+    height: 44px;
 
-  .search-item {
-    width: 100%;
-  }
-
-   .search-item {
-    background: #f2f2f2;
     border-radius: 14px;
-    padding: 4px;
-     width: 100%;
-  }
+    border: none;
 
-  .search-item input,
-  .category-select,
-  .city-input {
-    background: white;
-    border-radius: 12px;
-    width: 100%;
+    background: #f2f2f7;
+    font-size: 15px;
+    font-weight: 500;
   }
-  /* Add card button */
-  .btn.add {
-    width: 100%;
-    height: 48px;
-    border-radius: 16px;
-    font-size: 16px;
-  }
-
-  /* auth block */
-  .auth-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-    .city-select {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0;
-  }
-}
-
-
-
-/* ===== MOBILE FILTERS ===== */
-@media (max-width: 768px) {
 
   .search-box {
     display: none;
-    width: 100%;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 10px;
+    gap: 10px;
+
+    background: transparent;
+    padding: 0;
   }
 
   .search-box.open {
     display: flex;
   }
 
-  .search-main input {
+  .search-main input,
+  .category-select,
+  .city-select {
     width: 100%;
-  }
-
-  .mobile-filters-btn {
-    width: 100%;
-    margin-top: 10px;
-    height: 44px;
-    border-radius: 14px;
-    border: none;
-    background: #f2f2f7;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-}
-@media (min-width: 769px) {
-  .search-box {
-    display: flex !important;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .mobile-filters-btn {
-    display: none;
-  }
-}
-/* ================= MOBILE HEADER FIX ================= */
-/* ================= MOBILE TOP BAR ================= */
-@media (max-width: 768px) {
-
-  /* первая строка: logo + user */
-  .header-inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "logo user"
-      "filters filters"
-      "search search"
-      "add add";
-    row-gap: 12px;
-  }
-
-  .logo {
-    grid-area: logo;
-    align-self: center;
-  }
-
-  .auth-buttons {
-    grid-area: user;
-    justify-self: end;
-    align-self: center;
-  }
-
-  .mobile-filters-btn {
-    grid-area: filters;
-  }
-
-  .search-box {
-    grid-area: search;
+    background: white;
+    border-radius: 12px;
   }
 
   .btn.add {
-    grid-area: add;
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    border-radius: 16px;
+  }
+
+  .auth-buttons {
+    justify-content: space-between;
   }
 }
-
