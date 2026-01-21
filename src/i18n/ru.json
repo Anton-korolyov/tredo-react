@@ -26,5 +26,6 @@
   "selectCategory": "Выберите категорию",
   "selectCity": "Выберите город",
 
-  "confirmDelete": "Удалить объявление?"
+  "confirmDelete": "Удалить объявление?",
+  "filters": "Фильтр"
 }

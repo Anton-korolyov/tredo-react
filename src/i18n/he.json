@@ -26,5 +26,6 @@
   "selectCategory": "בחר קטגוריה",
   "selectCity": "בחר עיר",
 
-  "confirmDelete": "למחוק את המודעה?"
+  "confirmDelete": "למחוק את המודעה?",
+  "filters": "סינון"
 }

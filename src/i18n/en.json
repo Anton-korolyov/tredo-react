@@ -26,5 +26,6 @@
   "selectCategory": "Select category",
   "selectCity": "Select city",
 
-  "confirmDelete": "Delete this card?"
+  "confirmDelete": "Delete this card?",
+  "filters": "Filter"
 }
