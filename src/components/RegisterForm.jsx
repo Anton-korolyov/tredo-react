@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../auth/AuthContext";
 import "./RegisterForm.css";
+
 export default function RegisterForm({ onCancel, onSwitchToLogin }) {
+  const { t } = useTranslation();
   const { register } = useAuth();
 
   const [email, setEmail] = useState("");
@@ -15,16 +18,16 @@ export default function RegisterForm({ onCancel, onSwitchToLogin }) {
     setError(null);
 
     if (password !== repeat) {
-      setError("Passwords do not match");
+      setError(t("passwordsNotMatch"));
       return;
     }
 
     try {
       setLoading(true);
-      await register(email, password); // 👈 API
-      onCancel(); // закрываем popup
+      await register(email, password);
+      onCancel();
     } catch (err) {
-      setError(err.message || "Register failed");
+      setError(err.message || t("registerFailed"));
     } finally {
       setLoading(false);
     }
@@ -32,12 +35,12 @@ export default function RegisterForm({ onCancel, onSwitchToLogin }) {
 
   return (
     <form className="auth-form" onSubmit={submit}>
-      <h2>Create account</h2>
+      <h2>{t("createAccount")}</h2>
 
       {error && <div className="form-error">{error}</div>}
 
       <input
-        placeholder="Email"
+        placeholder={t("email")}
         value={email}
         onChange={e => setEmail(e.target.value)}
         required
@@ -45,7 +48,7 @@ export default function RegisterForm({ onCancel, onSwitchToLogin }) {
 
       <input
         type="password"
-        placeholder="Password"
+        placeholder={t("password")}
         value={password}
         onChange={e => setPassword(e.target.value)}
         required
@@ -53,7 +56,7 @@ export default function RegisterForm({ onCancel, onSwitchToLogin }) {
 
       <input
         type="password"
-        placeholder="Repeat password"
+        placeholder={t("repeatPassword")}
         value={repeat}
         onChange={e => setRepeat(e.target.value)}
         required
@@ -61,7 +64,7 @@ export default function RegisterForm({ onCancel, onSwitchToLogin }) {
 
       <div className="form-actions">
         <button className="ios-btn primary" disabled={loading}>
-          {loading ? "Creating..." : "Register"}
+          {loading ? t("creating") : t("register")}
         </button>
 
         <button
@@ -69,14 +72,14 @@ export default function RegisterForm({ onCancel, onSwitchToLogin }) {
           className="ios-btn secondary"
           onClick={onCancel}
         >
-          Cancel
+          {t("cancel")}
         </button>
       </div>
 
       <p className="form-hint">
-        Already have an account?{" "}
+        {t("alreadyHaveAccount")}{" "}
         <button type="button" onClick={onSwitchToLogin}>
-          Login
+          {t("login")}
         </button>
       </p>
     </form>

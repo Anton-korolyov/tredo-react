@@ -31,6 +31,16 @@
   "addNewCard": "Add new card",
   "chooseImage": "Choose image",
   "selectCategoryAlert": "Select category",
-  "selectCityAlert": "Select city"
+  "selectCityAlert": "Select city",
+   "createAccount": "Create account",
+  "email": "Email",
+  "password": "Password",
+  "repeatPassword": "Repeat password",
+
+  "passwordsNotMatch": "Passwords do not match",
+  "registerFailed": "Register failed",
+
+  "creating": "Creating...",
+  "alreadyHaveAccount": "Already have an account?"
   
 }

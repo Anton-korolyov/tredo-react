@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../auth/AuthContext";
 
 export default function LoginForm({ onCancel }) {
+  const { t } = useTranslation();
   const { login } = useAuth();
 
   const [email, setEmail] = useState("");
@@ -16,9 +18,9 @@ export default function LoginForm({ onCancel }) {
 
     try {
       await login(email, password);
-      onCancel(); // закрываем popup после успешного логина
+      onCancel();
     } catch (err) {
-      setError("Invalid email or password");
+      setError(t("invalidLogin"));
     } finally {
       setLoading(false);
     }
@@ -26,11 +28,11 @@ export default function LoginForm({ onCancel }) {
 
   return (
     <form className="card-form" onSubmit={submit}>
-      <h2>Login</h2>
+      <h2>{t("login")}</h2>
 
       <input
         type="email"
-        placeholder="Email"
+        placeholder={t("email")}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -38,7 +40,7 @@ export default function LoginForm({ onCancel }) {
 
       <input
         type="password"
-        placeholder="Password"
+        placeholder={t("password")}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
@@ -56,7 +58,7 @@ export default function LoginForm({ onCancel }) {
           className="ios-btn primary"
           disabled={loading}
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? t("loggingIn") : t("login")}
         </button>
 
         <button
@@ -65,7 +67,7 @@ export default function LoginForm({ onCancel }) {
           onClick={onCancel}
           disabled={loading}
         >
-          Cancel
+          {t("cancel")}
         </button>
       </div>
     </form>

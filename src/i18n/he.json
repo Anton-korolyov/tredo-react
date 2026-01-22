@@ -31,5 +31,15 @@
   "addNewCard": "הוסף מודעה",
   "chooseImage": "בחר תמונה",
   "selectCategoryAlert": "בחר קטגוריה",
-  "selectCityAlert": "בחר עיר"
+  "selectCityAlert": "בחר עיר",
+   "createAccount": "יצירת חשבון",
+  "email": "אימייל",
+  "password": "סיסמה",
+  "repeatPassword": "חזור על הסיסמה",
+
+  "passwordsNotMatch": "הסיסמאות אינן תואמות",
+  "registerFailed": "הרשמה נכשלה",
+
+  "creating": "נוצר...",
+  "alreadyHaveAccount": "כבר יש לך חשבון?"
 }

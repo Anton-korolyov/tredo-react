@@ -31,5 +31,15 @@
     "addNewCard": "Добавить объявление",
   "chooseImage": "Выбрать изображение",
   "selectCategoryAlert": "Выберите категорию",
-  "selectCityAlert": "Выберите город"
+  "selectCityAlert": "Выберите город",
+  "createAccount": "Создание аккаунта",
+  "email": "Email",
+  "password": "Пароль",
+  "repeatPassword": "Повторите пароль",
+
+  "passwordsNotMatch": "Пароли не совпадают",
+  "registerFailed": "Ошибка регистрации",
+
+  "creating": "Создание...",
+  "alreadyHaveAccount": "Уже есть аккаунт?"
 }
