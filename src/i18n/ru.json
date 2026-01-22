@@ -27,5 +27,9 @@
   "selectCity": "Выберите город",
 
   "confirmDelete": "Удалить объявление?",
-  "filters": "Фильтр"
+  "filters": "Фильтр",
+    "addNewCard": "Добавить объявление",
+  "chooseImage": "Выбрать изображение",
+  "selectCategoryAlert": "Выберите категорию",
+  "selectCityAlert": "Выберите город"
 }

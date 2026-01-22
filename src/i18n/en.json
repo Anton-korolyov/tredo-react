@@ -27,5 +27,10 @@
   "selectCity": "Select city",
 
   "confirmDelete": "Delete this card?",
-  "filters": "Filter"
+  "filters": "Filter",
+  "addNewCard": "Add new card",
+  "chooseImage": "Choose image",
+  "selectCategoryAlert": "Select category",
+  "selectCityAlert": "Select city",
+  
 }

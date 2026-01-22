@@ -27,5 +27,9 @@
   "selectCity": "בחר עיר",
 
   "confirmDelete": "למחוק את המודעה?",
-  "filters": "סינון"
+  "filters": "סינון",
+  "addNewCard": "הוסף מודעה",
+  "chooseImage": "בחר תמונה",
+  "selectCategoryAlert": "בחר קטגוריה",
+  "selectCityAlert": "בחר עיר"
 }

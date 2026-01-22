@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import api from "../api/axios";
 import "./CardForm.css";
 
 export default function CardForm({ initialData = {}, onSave, onCancel }) {
+  const { t } = useTranslation();
   const BACKEND_ORIGIN = import.meta.env.VITE_API_URL;
 
   const [title, setTitle] = useState(initialData.title || "");
@@ -25,14 +27,14 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
 
   // ===== LOAD CATEGORIES =====
   useEffect(() => {
-    api.get("/api/categories?lang=${i18n.language}")
+    api.get("/api/categories")
       .then(res => setCategories(res.data))
       .catch(err => console.error(err));
   }, []);
 
   // ===== LOAD CITIES =====
   useEffect(() => {
-    api.get("/api/cities/search") // первые 10
+    api.get("/api/cities/search")
       .then(res => setCities(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -49,12 +51,12 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
     e.preventDefault();
 
     if (!categoryId) {
-      alert("Select category");
+      alert(t("selectCategory"));
       return;
     }
 
     if (!cityId) {
-      alert("Select city");
+      alert(t("selectCity"));
       return;
     }
 
@@ -72,10 +74,12 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
 
   return (
     <form className="card-form" onSubmit={handleSubmit}>
-      <h2>{initialData.id ? "Edit card" : "Add new card"}</h2>
+      <h2>
+        {initialData.id ? t("editCard") : t("createCard")}
+      </h2>
 
       <input
-        placeholder="Title"
+        placeholder={t("title")}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
@@ -83,7 +87,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
 
       <input
         type="number"
-        placeholder="Price"
+        placeholder={t("price")}
         value={price}
         onChange={(e) => setPrice(e.target.value)}
         required
@@ -95,7 +99,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
         onChange={(e) => setCategoryId(e.target.value)}
         required
       >
-        <option value="">Select category</option>
+        <option value="">{t("selectCategory")}</option>
         {categories.map(c => (
           <option key={c.id} value={c.id}>
             {c.name}
@@ -109,7 +113,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
         onChange={(e) => setCityId(e.target.value)}
         required
       >
-        <option value="">Select city</option>
+        <option value="">{t("selectCity")}</option>
         {cities.map(c => (
           <option key={c.id} value={c.id}>
             {c.name}
@@ -118,7 +122,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
       </select>
 
       <input
-        placeholder="Phone"
+        placeholder={t("phone")}
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         required
@@ -127,7 +131,7 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
       {/* FILE */}
       <div className="file-upload">
         <label className="file-btn">
-          📷 Choose image
+          📷 {t("chooseImage")}
           <input
             type="file"
             accept="image/*"
@@ -155,8 +159,9 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
         />
       )}
 
-      <textarea className="desc"
-        placeholder="Description"
+      <textarea
+        className="desc"
+        placeholder={t("description")}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         rows={4}
@@ -164,10 +169,10 @@ export default function CardForm({ initialData = {}, onSave, onCancel }) {
 
       <div className="form-actions">
         <button type="submit" className="ios-btn primary">
-          Save
+          {t("save")}
         </button>
         <button type="button" className="ios-btn secondary" onClick={onCancel}>
-          Cancel
+          {t("cancel")}
         </button>
       </div>
     </form>
