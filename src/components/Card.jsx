@@ -16,7 +16,9 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
         <h3>{item.title}</h3>
         
         <div className="card-info">
-          <span className="price">₪ {item.price.toLocaleString()}</span>
+          <span className="price">₪<span className="price">
+  ₪ {Number(item?.price ?? 0).toLocaleString("he-IL")}
+</span></span>
          <span className="city">{item.cityName}</span>
         </div>
       </div>
